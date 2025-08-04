@@ -1,0 +1,58 @@
+﻿@page "/Janken"
+
+@* 動的な動きを可能にする *@
+@rendermode InteractiveServer
+
+<PageTitle>じゃんけんGAME</PageTitle>
+
+
+<h1>じゃんけんゲーム</h1>
+<p>@DateTime.Now</p>
+
+@* bootstrap使用 *@
+<p>
+    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <button type="button" class="btn btn-danger" @onclick="() => jankenStart(1)">グー</button>
+        <button type="button" class="btn btn-warning" @onclick="() => jankenStart(2)">チョキ</button>
+        <button type="button" class="btn btn-success" @onclick="() => jankenStart(3)">パー</button>
+    </div>
+</p>
+<p>@jankenName</p>
+
+@code{
+    private string jankenName = "なし";
+    Random random = new Random();
+
+    private void jankenStart(int jankenNumber)
+    {
+        //コンピュータの出す手を決める（１：グー、２：チョキ、３：パー）
+        int comJankenNumber = random.Next(1, 4);
+
+        if (jankenNumber == 1)
+        {
+            //グーを入力した場合
+            jankenName="グーです";
+        }
+        else if(jankenNumber == 2)
+        {
+            //チョキを入力した場合
+            jankenName = "チョキです";
+        }
+        else if(jankenNumber==3)
+        {
+            //パーを入力した場合
+            jankenName = "パーです";
+        }
+    }
+
+    private void executeJanken(int firstNum,int secondNum)
+    {
+        
+    }
+
+    //テストメソッド（イベント引数）
+    private void testJanken(MouseEventArgs args)
+    {
+        
+    }
+}
